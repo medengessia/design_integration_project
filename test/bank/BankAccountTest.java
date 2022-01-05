@@ -37,4 +37,16 @@ public class BankAccountTest {
 		account.debit(amount);
 		assertEquals(amount, before - account.getDebit());
 	}
+	
+	@Test
+	public void negativeAmountNotApplied () {
+		BankAccount account = new BankAccount();
+		float credit = account.getCredit();
+		float debit = account.getDebit();
+		float amount = -100;
+		account.credit(amount);
+		account.debit(amount);
+		assertEquals(credit, account.getCredit());
+		assertEquals(debit, account.getDebit());
+	}
 }
