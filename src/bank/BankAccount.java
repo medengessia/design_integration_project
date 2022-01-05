@@ -40,4 +40,9 @@ public class BankAccount {
 		return this.debit;
 	}
 
+	public void credit(float amount) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

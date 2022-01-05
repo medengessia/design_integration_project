@@ -20,4 +20,12 @@ public class BankAccountTest {
 		assertEquals(0, account.getDebit());
 	}
 	
+	@Test
+	public void creditWellAppliedOnAccount () {
+		BankAccount account = new BankAccount();
+		float before = account.getCredit();
+		float amount = 100;
+		account.credit(amount);
+		assertEquals(amount, account.getCredit() - before);
+	}
 }
