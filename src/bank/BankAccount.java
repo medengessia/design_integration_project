@@ -40,9 +40,12 @@ public class BankAccount {
 		return this.debit;
 	}
 
+	/**
+	 * Adds a certain amount to an account.
+	 * @param amount the amount to credit an account with.
+	 */
 	public void credit(float amount) {
-		// TODO Auto-generated method stub
-		
+		this.credit += amount;
 	}
 
 }
