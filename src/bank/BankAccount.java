@@ -48,9 +48,12 @@ public class BankAccount {
 		this.credit += amount;
 	}
 
+	/**
+	 * Removes a certain amount to an account.
+	 * @param amount the amount to debit an account with.
+	 */
 	public void debit(float amount) {
-		// TODO Auto-generated method stub
-		
+		this.debit -= amount;
 	}
 
 }
