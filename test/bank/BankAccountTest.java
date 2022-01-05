@@ -28,4 +28,13 @@ public class BankAccountTest {
 		account.credit(amount);
 		assertEquals(amount, account.getCredit() - before);
 	}
+	
+	@Test
+	public void debitWellAppliedOnAccount () {
+		BankAccount account = new BankAccount();
+		float before = account.getDebit();
+		float amount = 100;
+		account.debit(amount);
+		assertEquals(amount, before - account.getDebit());
+	}
 }
