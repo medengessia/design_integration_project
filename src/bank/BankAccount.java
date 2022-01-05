@@ -45,7 +45,9 @@ public class BankAccount {
 	 * @param amount the amount to credit an account with.
 	 */
 	public void credit(float amount) {
-		this.credit += amount;
+		if (amount > 0) {
+			this.credit += amount;
+		}
 	}
 
 	/**
@@ -53,7 +55,9 @@ public class BankAccount {
 	 * @param amount the amount to debit an account with.
 	 */
 	public void debit(float amount) {
-		this.debit -= amount;
+		if (amount > 0) {
+			this.debit -= amount;
+		}
 	}
 
 }
