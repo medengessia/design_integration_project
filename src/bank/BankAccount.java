@@ -39,6 +39,14 @@ public class BankAccount {
 	public float getDebit() {
 		return this.debit;
 	}
+	
+	/**
+	 * Returns the balance of an account.
+	 * @return the balance of an account.
+	 */
+	public float getBalance() {
+		return this.credit + this.debit;
+	}
 
 	/**
 	 * Adds a certain amount to an account.
@@ -58,11 +66,6 @@ public class BankAccount {
 		if (amount > 0) {
 			this.debit -= amount;
 		}
-	}
-
-	public float getBalance() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 }
