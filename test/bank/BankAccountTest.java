@@ -49,4 +49,17 @@ public class BankAccountTest {
 		assertEquals(credit, account.getCredit());
 		assertEquals(debit, account.getDebit());
 	}
+	
+	@Test
+	public void balanceCorrectlyComputed () {
+		BankAccount account = new BankAccount();
+		assertEquals(0, account.getBalance());
+		float amount1 = 100;
+		float amount2 = 50;
+		for(int i=0; i<5; i++) {
+			account.credit(amount1);
+			account.debit(amount2);
+		}
+		assertEquals(account.getBalance(), account.getCredit() + account.getDebit());
+	}
 }

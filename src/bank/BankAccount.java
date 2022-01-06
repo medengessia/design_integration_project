@@ -60,4 +60,9 @@ public class BankAccount {
 		}
 	}
 
+	public float getBalance() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
