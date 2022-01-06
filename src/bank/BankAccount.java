@@ -11,10 +11,10 @@ package bank;
 public class BankAccount {
 	
 	// The credit available on an account.
-	private float credit;
+	private double credit;
 	
 	// The debit available on an account.
-	private float debit;
+	private double debit;
 	
 	/**
 	 * A constructor for BankAccount instances.
@@ -28,7 +28,7 @@ public class BankAccount {
 	 * Returns the credit available on an account.
 	 * @return the credit available on an account.
 	 */
-	public float getCredit() {
+	public double getCredit() {
 		return this.credit;
 	}
 
@@ -36,7 +36,7 @@ public class BankAccount {
 	 * Returns the debit available on an account.
 	 * @return the debit available on an account.
 	 */
-	public float getDebit() {
+	public double getDebit() {
 		return this.debit;
 	}
 	
@@ -44,7 +44,7 @@ public class BankAccount {
 	 * Returns the balance of an account.
 	 * @return the balance of an account.
 	 */
-	public float getBalance() {
+	public double getBalance() {
 		return this.credit + this.debit;
 	}
 
@@ -52,7 +52,7 @@ public class BankAccount {
 	 * Adds a certain amount to an account.
 	 * @param amount the amount to credit an account with.
 	 */
-	public void credit(float amount) {
+	public void credit(double amount) {
 		if (amount > 0) {
 			this.credit += amount;
 		}
@@ -62,10 +62,35 @@ public class BankAccount {
 	 * Removes a certain amount to an account.
 	 * @param amount the amount to debit an account with.
 	 */
-	public void debit(float amount) {
+	public void debit(double amount) {
 		if (amount > 0) {
 			this.debit -= amount;
 		}
+	}
+
+	public double[] getCredits() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public double[] getDebits() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void addCredit(double amount1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addDebit(double amount2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public int getCapacity() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
