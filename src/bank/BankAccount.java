@@ -27,6 +27,9 @@ public class BankAccount {
 	// The capacity of both tables.
 	private static final int CAPACITY = 20;
 	
+	// The maximal allowed amount to credit or debit an account.
+	public static final double MAX_AMOUNT = 100000;
+	
 	/**
 	 * A constructor for BankAccount instances.
 	 */
@@ -98,7 +101,7 @@ public class BankAccount {
 		if (amount == 0) {
 			throw new ZeroCreditOrDebitException("A credit of zero is prohibited!");
 		}
-		if (amount > 0) {
+		if (amount > 0 && amount <= MAX_AMOUNT) {
 			this.credit += amount;
 		}
 	}
@@ -112,7 +115,7 @@ public class BankAccount {
 		if (amount == 0) {
 			throw new ZeroCreditOrDebitException("A debit of zero is prohibited!");
 		}
-		if (amount > 0) {
+		if (amount > 0 && amount <= MAX_AMOUNT) {
 			this.debit -= amount;
 		}
 	}
@@ -126,7 +129,7 @@ public class BankAccount {
 		if (amount == 0) {
 			throw new ZeroCreditOrDebitException("A credit of zero is prohibited!");
 		}
-		if (amount > 0) {
+		if (amount > 0 && amount <= MAX_AMOUNT) {
 			int i = 0;
 			while (i<CAPACITY && this.credits[i] != 0) {
 				i += 1;
@@ -150,7 +153,7 @@ public class BankAccount {
 		if (amount == 0) {
 			throw new ZeroCreditOrDebitException("A debit of zero is prohibited!");
 		}
-		if (amount > 0) {
+		if (amount > 0 && amount <= MAX_AMOUNT) {
 			int i = 0;
 			while (i<CAPACITY && this.debits[i] != 0) {
 				i += 1;

@@ -134,7 +134,7 @@ public class BankAccountTest {
 	@Test
 	public void creditOrDebitNotExceeding () {
 		BankAccount account = new BankAccount();
-		double amount = 100000;
+		double amount = 100001;
 		try {
 			account.credit(amount);
 			account.debit(amount*2);
