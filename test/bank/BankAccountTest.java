@@ -93,7 +93,7 @@ public class BankAccountTest {
 		assertEquals(amount1, account.getCredits()[1]);
 		assertEquals(amount2, account.getDebits()[1]);
 		
-		// Finally, check the rest of the elements of both tables have returned to null.
+		// Finally, check the rest of the elements of both tables have returned to zero.
 		for (int i=2; i<account.getCapacity(); i++) {
 			assertEquals(0, account.getCredits()[i]);
 			assertEquals(0, account.getDebits()[i]);

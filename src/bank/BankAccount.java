@@ -16,12 +16,27 @@ public class BankAccount {
 	// The debit available on an account.
 	private double debit;
 	
+	// The table of credits.
+	private double[] credits;
+	
+	// The table of debits.
+	private double[] debits;
+	
+	// The capacity of both tables.
+	private static final int CAPACITY = 20;
+	
 	/**
 	 * A constructor for BankAccount instances.
 	 */
 	public BankAccount () {
 		this.credit = 0;
 		this.debit = 0;
+		this.credits = new double[CAPACITY];
+		this.debits = new double[CAPACITY];
+		for (int i=0; i<CAPACITY; i++) {
+			this.credits[i] = 0;
+			this.debits[i] = 0;
+		}
 	}
 
 	/**
@@ -47,7 +62,31 @@ public class BankAccount {
 	public double getBalance() {
 		return this.credit + this.debit;
 	}
+	
+	/**
+	 * Returns the capacity of the tables.
+	 * @return the capacity of the tables.
+	 */
+	public int getCapacity() {
+		return CAPACITY;
+	}
+	
+	/**
+	 * Returns the table of credits.
+	 * @return the table of credits.
+	 */
+	public double[] getCredits() {
+		return this.credits;
+	}
 
+	/**
+	 * Returns the table of debits.
+	 * @return the table of debits.
+	 */
+	public double[] getDebits() {
+		return this.debits;
+	}
+	
 	/**
 	 * Adds a certain amount to an account.
 	 * @param amount the amount to credit an account with.
@@ -68,29 +107,55 @@ public class BankAccount {
 		}
 	}
 
-	public double[] getCredits() {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * Adds a credit to an account's table of credits.
+	 * @param amount the amount to credit an account with.
+	 */
+	public void addCredit(double amount) {
+		int i = 0;
+		while (i<CAPACITY && this.credits[i] != 0) {
+			i += 1;
+		}
+		if (i < CAPACITY) {
+			this.credits[i] = amount;
+		}
+		else {
+			initialiseTable(this.credits);
+			this.credits[1] = amount;
+		}
 	}
 
-	public double[] getDebits() {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * Adds a debit to an account's table of debits.
+	 * @param amount the amount to debit an account with.
+	 */
+	public void addDebit(double amount) {
+		int i = 0;
+		while (i<CAPACITY && this.debits[i] != 0) {
+			i += 1;
+		}
+		if (i < CAPACITY) {
+			this.debits[i] = amount;
+		}
+		else {
+			initialiseTable(this.debits);
+			this.debits[1] = amount;
+		}
 	}
-
-	public void addCredit(double amount1) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void addDebit(double amount2) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public int getCapacity() {
-		// TODO Auto-generated method stub
-		return 0;
+	
+	/**
+	 * Initialises a table so that the first element becomes the sum of all former elements, whose places return to zero.
+	 * @param table the table to initialise.
+	 */
+	private void initialiseTable (double[] table) {
+		int sum = 0;
+		for (int i=0; i<CAPACITY; i++) {
+			sum += table[i];
+		}
+		table[0] = sum;
+		for (int i=1; i<CAPACITY; i++) {
+			table[i] = 0;
+		}
 	}
 
 }
