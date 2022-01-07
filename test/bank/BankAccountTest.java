@@ -67,7 +67,7 @@ public class BankAccountTest {
 	public void creditDebitAccumulation () {
 		BankAccount account = new BankAccount();
 		
-		// Firstly, check the table of credits and debits have the expected length.
+		// Firstly, check the tables of credits and debits have the expected length.
 		assertEquals(account.getCapacity(), account.getCredits().length);
 		assertEquals(account.getCapacity(), account.getDebits().length);
 		
@@ -98,6 +98,15 @@ public class BankAccountTest {
 			assertEquals(0, account.getCredits()[i]);
 			assertEquals(0, account.getDebits()[i]);
 		}
+	}
+	
+	@Test
+	public void zeroCreditOrDebitIsForbidden () {
+		BankAccount account = new BankAccount();
+		assertThrows(ZeroCreditOrDebitException.class, () -> {account.credit(0);});
+		assertThrows(ZeroCreditOrDebitException.class, () -> {account.debit(0);});
+		assertThrows(ZeroCreditOrDebitException.class, () -> {account.addCredit(0);});
+		assertThrows(ZeroCreditOrDebitException.class, () -> {account.addDebit(0);});
 	}
 	
 }
