@@ -1,5 +1,6 @@
 package bank;
 
+import java.util.*;
 import bank.ZeroCreditOrDebitException;
 
 /**
@@ -19,13 +20,10 @@ public class BankAccount {
 	private double debit;
 	
 	// The table of credits.
-	private double[] credits;
+	private List<Double> credits;
 	
 	// The table of debits.
-	private double[] debits;
-	
-	// The capacity of both tables.
-	private static final int CAPACITY = 20;
+	private List<Double> debits;
 	
 	// The maximal allowed amount to credit or debit an account.
 	public static final double MAX_AMOUNT = 100000;
@@ -36,12 +34,8 @@ public class BankAccount {
 	public BankAccount () {
 		this.credit = 0;
 		this.debit = 0;
-		this.credits = new double[CAPACITY];
-		this.debits = new double[CAPACITY];
-		for (int i=0; i<CAPACITY; i++) {
-			this.credits[i] = 0;
-			this.debits[i] = 0;
-		}
+		this.credits = new ArrayList<>();
+		this.debits = new ArrayList<>();
 	}
 
 	/**
@@ -69,18 +63,10 @@ public class BankAccount {
 	}
 	
 	/**
-	 * Returns the capacity of the tables.
-	 * @return the capacity of the tables.
-	 */
-	public int getCapacity() {
-		return CAPACITY;
-	}
-	
-	/**
 	 * Returns the table of credits.
 	 * @return the table of credits.
 	 */
-	public double[] getCredits() {
+	public List<Double> getCredits() {
 		return this.credits;
 	}
 
@@ -88,7 +74,7 @@ public class BankAccount {
 	 * Returns the table of debits.
 	 * @return the table of debits.
 	 */
-	public double[] getDebits() {
+	public List<Double> getDebits() {
 		return this.debits;
 	}
 	
@@ -130,17 +116,7 @@ public class BankAccount {
 			throw new ZeroCreditOrDebitException("A credit of zero is prohibited!");
 		}
 		if (amount > 0 && amount <= MAX_AMOUNT) {
-			int i = 0;
-			while (i<CAPACITY && this.credits[i] != 0) {
-				i += 1;
-			}
-			if (i < CAPACITY) {
-				this.credits[i] = amount;
-			}
-			else {
-				initialiseTable(this.credits);
-				this.credits[1] = amount;
-			}
+			this.credits.add(amount);
 		}
 	}
 
@@ -154,32 +130,7 @@ public class BankAccount {
 			throw new ZeroCreditOrDebitException("A debit of zero is prohibited!");
 		}
 		if (amount > 0 && amount <= MAX_AMOUNT) {
-			int i = 0;
-			while (i<CAPACITY && this.debits[i] != 0) {
-				i += 1;
-			}
-			if (i < CAPACITY) {
-				this.debits[i] = amount;
-			}
-			else {
-				initialiseTable(this.debits);
-				this.debits[1] = amount;
-			}
-		}
-	}
-	
-	/**
-	 * Initialises a table so that the first element becomes the sum of all former elements, whose places return to zero.
-	 * @param table the table to initialise.
-	 */
-	private void initialiseTable (double[] table) {
-		int sum = 0;
-		for (int i=0; i<CAPACITY; i++) {
-			sum += table[i];
-		}
-		table[0] = sum;
-		for (int i=1; i<CAPACITY; i++) {
-			table[i] = 0;
+			this.debits.add(amount);
 		}
 	}
 

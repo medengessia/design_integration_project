@@ -18,10 +18,8 @@ public class BankAccountTest {
 		BankAccount account = new BankAccount();
 		assertEquals(0, account.getCredit());
 		assertEquals(0, account.getDebit());
-		for (int i=0; i<account.getCapacity(); i++) {
-			assertEquals(0, account.getCredits()[i]);
-			assertEquals(0, account.getDebits()[i]);
-		}
+		assertEquals(0, account.getCredits().size());
+		assertEquals(0, account.getDebits().size());
 	}
 	
 	@Test
@@ -57,11 +55,15 @@ public class BankAccountTest {
 		try {
 			account.credit(amount);
 			account.debit(amount);
+			account.addCredit(amount);
+			account.addDebit(amount);
 		} catch (ZeroCreditOrDebitException e) {
 			fail();
 		}
 		assertEquals(0, account.getCredit());
 		assertEquals(0, account.getDebit());
+		assertEquals(0, account.getCredits().size());
+		assertEquals(0, account.getDebits().size());
 	}
 	
 	@Test
@@ -79,47 +81,6 @@ public class BankAccountTest {
 			}
 		}
 		assertEquals(account.getBalance(), account.getCredit() + account.getDebit());
-	}
-	
-	@Test
-	public void creditDebitAccumulation () {
-		BankAccount account = new BankAccount();
-		
-		// Firstly, check the tables of credits and debits have the expected length.
-		assertEquals(account.getCapacity(), account.getCredits().length);
-		assertEquals(account.getCapacity(), account.getDebits().length);
-		
-		// Secondly, check there are no credits nor debits within the account.
-		for (int i=0; i<account.getCapacity(); i++) {
-			assertEquals(0, account.getCredits()[i]);
-			assertEquals(0, account.getDebits()[i]);
-		}
-		
-		// Thirdly, credit and debit the account till the capacity is exceeded
-		double amount1 = 100;
-		double amount2 = 50;
-		for (int i=0; i<account.getCapacity()+1; i++) {
-			try {
-				account.addCredit(amount1);
-				account.addDebit(amount2);
-			} catch (ZeroCreditOrDebitException e) {
-				fail();
-			}
-		}
-		
-		// Fourthly, check the first elements in the tables of credits and debits are the sum of the former ones. 
-		assertEquals(amount1*account.getCapacity(), account.getCredits()[0]);
-		assertEquals(amount2*account.getCapacity(), account.getDebits()[0]);
-		
-		// Fifthly, check the second elements in the tables are the new amounts credited or debited.
-		assertEquals(amount1, account.getCredits()[1]);
-		assertEquals(amount2, account.getDebits()[1]);
-		
-		// Finally, check the rest of the elements of both tables have returned to zero.
-		for (int i=2; i<account.getCapacity(); i++) {
-			assertEquals(0, account.getCredits()[i]);
-			assertEquals(0, account.getDebits()[i]);
-		}
 	}
 	
 	@Test
@@ -145,10 +106,8 @@ public class BankAccountTest {
 		}
 		assertEquals(0, account.getCredit());
 		assertEquals(0, account.getDebit());
-		for (int i=0; i<account.getCapacity(); i++) {
-			assertEquals(0, account.getCredits()[i]);
-			assertEquals(0, account.getDebits()[i]);
-		}
+		assertEquals(0, account.getCredits().size());
+		assertEquals(0, account.getDebits().size());
 	}
 	
 }
