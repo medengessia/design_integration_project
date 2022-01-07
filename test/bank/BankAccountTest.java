@@ -25,7 +25,11 @@ public class BankAccountTest {
 		BankAccount account = new BankAccount();
 		double before = account.getCredit();
 		double amount = 100;
-		account.credit(amount);
+		try {
+			account.credit(amount);
+		} catch (ZeroCreditOrDebitException e) {
+			fail();
+		}
 		assertEquals(amount, account.getCredit() - before);
 	}
 	
@@ -34,7 +38,11 @@ public class BankAccountTest {
 		BankAccount account = new BankAccount();
 		double before = account.getDebit();
 		double amount = 100;
-		account.debit(amount);
+		try {
+			account.debit(amount);
+		} catch (ZeroCreditOrDebitException e) {
+			fail();
+		}
 		assertEquals(amount, before - account.getDebit());
 	}
 	
@@ -44,8 +52,12 @@ public class BankAccountTest {
 		double credit = account.getCredit();
 		double debit = account.getDebit();
 		double amount = -100;
-		account.credit(amount);
-		account.debit(amount);
+		try {
+			account.credit(amount);
+			account.debit(amount);
+		} catch (ZeroCreditOrDebitException e) {
+			fail();
+		}
 		assertEquals(credit, account.getCredit());
 		assertEquals(debit, account.getDebit());
 	}
@@ -57,8 +69,12 @@ public class BankAccountTest {
 		double amount1 = 100;
 		double amount2 = 50;
 		for (int i=0; i<5; i++) {
-			account.credit(amount1);
-			account.debit(amount2);
+			try {
+				account.credit(amount1);
+				account.debit(amount2);
+			} catch (ZeroCreditOrDebitException e) {
+				fail();
+			}
 		}
 		assertEquals(account.getBalance(), account.getCredit() + account.getDebit());
 	}
@@ -81,8 +97,12 @@ public class BankAccountTest {
 		double amount1 = 100;
 		double amount2 = 50;
 		for (int i=0; i<account.getCapacity()+1; i++) {
-			account.addCredit(amount1);
-			account.addDebit(amount2);
+			try {
+				account.addCredit(amount1);
+				account.addDebit(amount2);
+			} catch (ZeroCreditOrDebitException e) {
+				fail();
+			}
 		}
 		
 		// Fourthly, check the first elements in the tables of credits and debits are the sum of the former ones. 

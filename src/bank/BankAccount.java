@@ -1,5 +1,7 @@
 package bank;
 
+import bank.ZeroCreditOrDebitException;
+
 /**
  * 
  * @author Medeng Matthieu
@@ -90,8 +92,12 @@ public class BankAccount {
 	/**
 	 * Adds a certain amount to an account.
 	 * @param amount the amount to credit an account with.
+	 * @throws ZeroCreditOrDebitException when the amount is zero.
 	 */
-	public void credit(double amount) {
+	public void credit(double amount) throws ZeroCreditOrDebitException {
+		if (amount == 0) {
+			throw new ZeroCreditOrDebitException("A credit of zero is prohibited!");
+		}
 		if (amount > 0) {
 			this.credit += amount;
 		}
@@ -100,8 +106,12 @@ public class BankAccount {
 	/**
 	 * Removes a certain amount to an account.
 	 * @param amount the amount to debit an account with.
+	 * @throws ZeroCreditOrDebitException when the amount is zero.
 	 */
-	public void debit(double amount) {
+	public void debit(double amount) throws ZeroCreditOrDebitException {
+		if (amount == 0) {
+			throw new ZeroCreditOrDebitException("A debit of zero is prohibited!");
+		}
 		if (amount > 0) {
 			this.debit -= amount;
 		}
@@ -110,36 +120,48 @@ public class BankAccount {
 	/**
 	 * Adds a credit to an account's table of credits.
 	 * @param amount the amount to credit an account with.
+	 * @throws ZeroCreditOrDebitException when the amount is zero.
 	 */
-	public void addCredit(double amount) {
-		int i = 0;
-		while (i<CAPACITY && this.credits[i] != 0) {
-			i += 1;
+	public void addCredit(double amount) throws ZeroCreditOrDebitException {
+		if (amount == 0) {
+			throw new ZeroCreditOrDebitException("A credit of zero is prohibited!");
 		}
-		if (i < CAPACITY) {
-			this.credits[i] = amount;
-		}
-		else {
-			initialiseTable(this.credits);
-			this.credits[1] = amount;
+		if (amount > 0) {
+			int i = 0;
+			while (i<CAPACITY && this.credits[i] != 0) {
+				i += 1;
+			}
+			if (i < CAPACITY) {
+				this.credits[i] = amount;
+			}
+			else {
+				initialiseTable(this.credits);
+				this.credits[1] = amount;
+			}
 		}
 	}
 
 	/**
 	 * Adds a debit to an account's table of debits.
 	 * @param amount the amount to debit an account with.
+	 * @throws ZeroCreditOrDebitException when the amount is zero.
 	 */
-	public void addDebit(double amount) {
-		int i = 0;
-		while (i<CAPACITY && this.debits[i] != 0) {
-			i += 1;
+	public void addDebit(double amount) throws ZeroCreditOrDebitException {
+		if (amount == 0) {
+			throw new ZeroCreditOrDebitException("A debit of zero is prohibited!");
 		}
-		if (i < CAPACITY) {
-			this.debits[i] = amount;
-		}
-		else {
-			initialiseTable(this.debits);
-			this.debits[1] = amount;
+		if (amount > 0) {
+			int i = 0;
+			while (i<CAPACITY && this.debits[i] != 0) {
+				i += 1;
+			}
+			if (i < CAPACITY) {
+				this.debits[i] = amount;
+			}
+			else {
+				initialiseTable(this.debits);
+				this.debits[1] = amount;
+			}
 		}
 	}
 	
