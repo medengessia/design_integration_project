@@ -18,6 +18,10 @@ public class BankAccountTest {
 		BankAccount account = new BankAccount();
 		assertEquals(0, account.getCredit());
 		assertEquals(0, account.getDebit());
+		for (int i=0; i<account.getCapacity(); i++) {
+			assertEquals(0, account.getCredits()[i]);
+			assertEquals(0, account.getDebits()[i]);
+		}
 	}
 	
 	@Test
@@ -49,8 +53,6 @@ public class BankAccountTest {
 	@Test
 	public void negativeAmountNotApplied () {
 		BankAccount account = new BankAccount();
-		double credit = account.getCredit();
-		double debit = account.getDebit();
 		double amount = -100;
 		try {
 			account.credit(amount);
@@ -58,8 +60,8 @@ public class BankAccountTest {
 		} catch (ZeroCreditOrDebitException e) {
 			fail();
 		}
-		assertEquals(credit, account.getCredit());
-		assertEquals(debit, account.getDebit());
+		assertEquals(0, account.getCredit());
+		assertEquals(0, account.getDebit());
 	}
 	
 	@Test
@@ -127,6 +129,26 @@ public class BankAccountTest {
 		assertThrows(ZeroCreditOrDebitException.class, () -> {account.debit(0);});
 		assertThrows(ZeroCreditOrDebitException.class, () -> {account.addCredit(0);});
 		assertThrows(ZeroCreditOrDebitException.class, () -> {account.addDebit(0);});
+	}
+	
+	@Test
+	public void creditOrDebitNotExceeding () {
+		BankAccount account = new BankAccount();
+		double amount = 100000;
+		try {
+			account.credit(amount);
+			account.debit(amount*2);
+			account.addCredit(amount*3);
+			account.addDebit(amount*4);
+		} catch (ZeroCreditOrDebitException e) {
+			fail();
+		}
+		assertEquals(0, account.getCredit());
+		assertEquals(0, account.getDebit());
+		for (int i=0; i<account.getCapacity(); i++) {
+			assertEquals(0, account.getCredits()[i]);
+			assertEquals(0, account.getDebits()[i]);
+		}
 	}
 	
 }
