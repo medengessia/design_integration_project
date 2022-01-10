@@ -41,5 +41,15 @@ public class SavingsAccount {
 	public List<Double> getDebits() {
 		return this.debits;
 	}
+
+	public void credit(double amount) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Double getBalance() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }
