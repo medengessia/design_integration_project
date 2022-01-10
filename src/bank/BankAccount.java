@@ -19,10 +19,10 @@ public class BankAccount {
 	// The debit available on an account.
 	private double debit;
 	
-	// The table of credits.
+	// The list of credits.
 	private List<Double> credits;
 	
-	// The table of debits.
+	// The list of debits.
 	private List<Double> debits;
 	
 	// The maximal allowed amount to credit or debit an account.
@@ -63,16 +63,16 @@ public class BankAccount {
 	}
 	
 	/**
-	 * Returns the table of credits.
-	 * @return the table of credits.
+	 * Returns the list of credits.
+	 * @return the list of credits.
 	 */
 	public List<Double> getCredits() {
 		return this.credits;
 	}
 
 	/**
-	 * Returns the table of debits.
-	 * @return the table of debits.
+	 * Returns the list of debits.
+	 * @return the list of debits.
 	 */
 	public List<Double> getDebits() {
 		return this.debits;
@@ -107,7 +107,7 @@ public class BankAccount {
 	}
 
 	/**
-	 * Adds a credit to an account's table of credits.
+	 * Adds a credit to an account's list of credits.
 	 * @param amount the amount to credit an account with.
 	 * @throws ZeroCreditOrDebitException when the amount is zero.
 	 */
@@ -121,7 +121,7 @@ public class BankAccount {
 	}
 
 	/**
-	 * Adds a debit to an account's table of debits.
+	 * Adds a debit to an account's list of debits.
 	 * @param amount the amount to debit an account with.
 	 * @throws ZeroCreditOrDebitException when the amount is zero.
 	 */
