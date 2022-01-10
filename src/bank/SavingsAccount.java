@@ -11,17 +11,35 @@ import java.util.*;
  */
 
 public class SavingsAccount {
-
+	
+	// The list of credits 
+	private List<Double> credits;
+	
+	// The list of debits
+	private List<Double> debits;
+	
+	/**
+	 * A constructor for SavingsAccount instances.
+	 */
+	public SavingsAccount () {
+		this.credits = new ArrayList<>();
+		this.debits = new ArrayList<>();
+	}
+	
+	/**
+	 * Returns the list of credits.
+	 * @return the list of credits.
+	 */
 	public List<Double> getCredits() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.credits;
 	}
 
+	/**
+	 * Returns the list of debits.
+	 * @return the list of debits.
+	 */
 	public List<Double> getDebits() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.debits;
 	}
 	
-	
-
 }
