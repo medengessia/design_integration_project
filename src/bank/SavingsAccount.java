@@ -42,14 +42,25 @@ public class SavingsAccount {
 		return this.debits;
 	}
 
+	/**
+	 * Adds a credit in the list of credits of a savings account.
+	 * @param amount the amount to credit the account with.
+	 */
 	public void credit(double amount) {
-		// TODO Auto-generated method stub
+		this.credits.add(amount);
 		
 	}
 
-	public Double getBalance() {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * Returns the balance of a savings account.
+	 * @return the balance of a savings account.
+	 */
+	public double getBalance() {
+		double balance = 0;
+		for (int i=0; i<this.credits.size(); i++) {
+			balance += this.credits.get(i);
+		}
+		return balance;
 	}
 	
 }
