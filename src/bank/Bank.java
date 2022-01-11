@@ -11,15 +11,35 @@ import java.util.*;
  */
 
 public class Bank {
-
-	public List<BankAccount> getBankAccounts() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	// The list of bank accounts in the bank.
+	private List<BankAccount> bankAccounts;
+	
+	// The list of savings accounts in the bank.
+	private List<SavingsAccount> savingsAccounts;
+	
+	/**
+	 * A constructor for Bank instances.
+	 */
+	public Bank () {
+		this.bankAccounts = new ArrayList<>();
+		this.savingsAccounts = new ArrayList<>();
 	}
 
+	/**
+	 * Returns the list of bank accounts in the bank.
+	 * @return the list of bank accounts in the bank.
+	 */
+	public List<BankAccount> getBankAccounts() {
+		return this.bankAccounts;
+	}
+
+	/**
+	 * Returns the list of savings accounts in the bank.
+	 * @return the list of savings accounts in the bank.
+	 */
 	public List<SavingsAccount> getSavingsAccounts() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.savingsAccounts;
 	}
 	
 	
