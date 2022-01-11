@@ -75,6 +75,11 @@ public class Bank {
 			this.getSavingsAccounts().get(i).credit(amount);
 		}
 	}
+
+	public void debitAccount(Object account, int i, double amount2) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 

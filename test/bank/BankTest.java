@@ -43,4 +43,18 @@ public class BankTest {
 		assertEquals(amount, account.getCredits().get(0));
 	}
 	
+	@Test
+	public void accountsWellDebited () {
+		Bank bank = new Bank();
+		double amount1 = 100;
+		double amount2 = 50;
+		SavingsAccount sAccount = new SavingsAccount();
+		bank.addAccount(sAccount);
+		assertEquals(0, sAccount.getDebits().size());
+		bank.creditAccount(sAccount, 0, amount1);
+		bank.debitAccount(sAccount, 0, amount2);
+		assertEquals(1, sAccount.getDebits().size());
+		assertEquals(amount2, sAccount.getDebits().get(0));
+	}
+	
 }
