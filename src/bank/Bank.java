@@ -42,9 +42,19 @@ public class Bank {
 		return this.savingsAccounts;
 	}
 
+	/**
+	 * Creates a new account either in the list of bank accounts or in the list of savings accounts. 
+	 * @param account an object which must be an instance of BankAccount or SavingsAccount.
+	 */
 	public void addAccount(Object account) {
-		// TODO Auto-generated method stub
-		
+		if (account instanceof BankAccount) {
+			BankAccount a1 = (BankAccount) account;
+			this.bankAccounts.add(a1);
+		}
+		if (account instanceof SavingsAccount) {
+			SavingsAccount a2 = (SavingsAccount) account;
+			this.savingsAccounts.add(a2);
+		}
 	}
 	
 	
