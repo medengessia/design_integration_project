@@ -48,7 +48,6 @@ public class SavingsAccount {
 	 */
 	public void credit(double amount) {
 		this.credits.add(amount);
-		
 	}
 
 	/**
@@ -60,7 +59,14 @@ public class SavingsAccount {
 		for (int i=0; i<this.credits.size(); i++) {
 			balance += this.credits.get(i);
 		}
+		for (int i=0; i<this.debits.size(); i++) {
+			balance -= this.debits.get(i);
+		}
 		return balance;
+	}
+
+	public void debit(double amount) {
+		this.debits.add(amount);
 	}
 	
 }
