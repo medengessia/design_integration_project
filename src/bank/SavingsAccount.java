@@ -1,6 +1,7 @@
 package bank;
 
 import java.util.*;
+import bank.DebitGreaterThanBalanceException;
 
 /**
  * 
@@ -68,10 +69,14 @@ public class SavingsAccount {
 	/**
 	 * Adds a debit in the list of debits of a savings account.
 	 * @param amount the amount to debit the account with.
+	 * @throws DebitGreaterThanBalanceException when the debit is greater than the balance.
 	 */
-	public void debit(double amount) {
-		if (this.getBalance() - amount >= 0) {
+	public void debit(double amount) throws DebitGreaterThanBalanceException {
+		if (this.getBalance() >= amount) {
 			this.debits.add(amount);
+		}
+		else {
+			throw new DebitGreaterThanBalanceException("The debit should not be greater than the balance!");
 		}
 	}
 	
