@@ -56,6 +56,11 @@ public class Bank {
 			this.savingsAccounts.add(a2);
 		}
 	}
+
+	public void creditAccount(int i, double amount) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 
