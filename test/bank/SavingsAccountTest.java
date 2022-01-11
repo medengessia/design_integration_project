@@ -62,5 +62,16 @@ public class SavingsAccountTest {
 		double amount = 100;
 		assertThrows(DebitGreaterThanBalanceException.class, () -> {sAccount.debit(amount);});
 	}
+	
+	@Test
+	public void interestCorrectlyComputed () {
+		SavingsAccount sAccount = new SavingsAccount();
+		assertEquals(0, sAccount.getInterest());
+		double rate = 1.75;
+		double amount = 10000;
+		sAccount.credit(amount);
+		sAccount.computeInterest(rate);
+		assertEquals((amount*rate)/100, sAccount.getInterest());
+	}
 
 }

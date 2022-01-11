@@ -79,5 +79,15 @@ public class SavingsAccount {
 			throw new DebitGreaterThanBalanceException("The debit should not be greater than the balance!");
 		}
 	}
+
+	public Double getInterest() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void computeInterest(double rate) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
