@@ -41,16 +41,26 @@ public class SavingsAccountTest {
 		assertEquals(amount1 + amount2, sAccount.getBalance());
 	}
 	
+	/**
+	 * @Test
+	 * public void debitGreaterThanBalanceNotApplied () {
+	 *     SavingsAccount sAccount = new SavingsAccount();
+	 *     assertEquals(0, sAccount.getBalance());
+	 *     double amount1 = 100;
+	 *     double amount2 = 200;
+	 *     sAccount.credit(amount1);
+	 *     assertEquals(amount1, sAccount.getBalance());
+	 *     sAccount.debit(amount2);
+	 *     assertEquals(amount1, sAccount.getBalance());	
+	 * }
+	 */
+	
 	@Test
-	public void debitGreaterThanBalanceNotApplied () {
+	public void debitGreaterThanBalanceForbidden () {
 		SavingsAccount sAccount = new SavingsAccount();
 		assertEquals(0, sAccount.getBalance());
-		double amount1 = 100;
-		double amount2 = 200;
-		sAccount.credit(amount1);
-		assertEquals(amount1, sAccount.getBalance());
-		sAccount.debit(amount2);
-		assertEquals(amount1, sAccount.getBalance());
+		double amount = 100;
+		assertThrows(DebitGreaterThanBalanceException.class, () -> {sAccount.debit(amount);});
 	}
 
 }

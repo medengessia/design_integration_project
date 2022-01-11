@@ -65,6 +65,10 @@ public class SavingsAccount {
 		return balance;
 	}
 
+	/**
+	 * Adds a debit in the list of debits of a savings account.
+	 * @param amount the amount to debit the account with.
+	 */
 	public void debit(double amount) {
 		if (this.getBalance() - amount >= 0) {
 			this.debits.add(amount);
