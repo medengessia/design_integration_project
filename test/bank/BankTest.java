@@ -38,7 +38,11 @@ public class BankTest {
 		BankAccount account = new BankAccount();
 		bank.addAccount(account);
 		assertEquals(0, account.getCredits().size());
-		bank.creditAccount(account, 0, amount);
+		try {
+			bank.creditAccount(account, 0, amount);
+		} catch (NotExistingAccountException e) {
+			fail();
+		}
 		assertEquals(1, account.getCredits().size());
 		assertEquals(amount, account.getCredits().get(0));
 	}
@@ -51,8 +55,12 @@ public class BankTest {
 		SavingsAccount sAccount = new SavingsAccount();
 		bank.addAccount(sAccount);
 		assertEquals(0, sAccount.getDebits().size());
-		bank.creditAccount(sAccount, 0, amount1);
-		bank.debitAccount(sAccount, 0, amount2);
+		try {
+			bank.creditAccount(sAccount, 0, amount1);
+			bank.debitAccount(sAccount, 0, amount2);
+		} catch (NotExistingAccountException e) {
+			fail();
+		}
 		assertEquals(1, sAccount.getDebits().size());
 		assertEquals(amount2, sAccount.getDebits().get(0));
 	}

@@ -62,17 +62,31 @@ public class Bank {
 	 * @param account the account whose type is to be identified.
 	 * @param i the index of the account.
 	 * @param amount the amount to credit the account with.
+	 * @throws NotExistingAccountException when the index does not exist in the lists.
 	 */
-	public void creditAccount(Object account, int i, double amount) {
+	public void creditAccount(Object account, int i, double amount) throws NotExistingAccountException {
+		
 		if (account instanceof BankAccount) {
+			
 			try {
-				this.getBankAccounts().get(i).addCredit(amount);
+				if (this.getBankAccounts().size() > i) {
+					this.getBankAccounts().get(i).addCredit(amount);
+				} else {
+					throw new NotExistingAccountException("This account does not exist!");
+				}		
 			} catch (ZeroCreditOrDebitException e) {
 				System.out.println("A credit of zero is prohibited!");
 			}
+			
 		}
+		
+		
 		if (account instanceof SavingsAccount) {
-			this.getSavingsAccounts().get(i).credit(amount);
+			if (this.getSavingsAccounts().size() > i) {
+				this.getSavingsAccounts().get(i).credit(amount);
+			} else {
+				throw new NotExistingAccountException("This account does not exist!");
+			}		
 		}
 	}
 
@@ -81,24 +95,39 @@ public class Bank {
 	 * @param account the account whose type is to be identified.
 	 * @param i the index of the account.
 	 * @param amount the amount to credit the account with.
+	 * @throws NotExistingAccountException when the index does not exist in the lists.
 	 */
-	public void debitAccount(Object account, int i, double amount) {
+	public void debitAccount(Object account, int i, double amount) throws NotExistingAccountException {
+		
 		if (account instanceof BankAccount) {
+			
 			try {
-				this.getBankAccounts().get(i).addDebit(amount);
+				if (this.getBankAccounts().size() > i) {
+					this.getBankAccounts().get(i).addDebit(amount);
+				} else {
+					throw new NotExistingAccountException("This account does not exist!");
+				}	
 			} catch (ZeroCreditOrDebitException e) {
 				System.out.println("A debit of zero is prohibited!");
 			}
+			
 		}
+		
+		
 		if (account instanceof SavingsAccount) {
+			
 			try {
-				this.getSavingsAccounts().get(i).debit(amount);
+				if (this.getSavingsAccounts().size() > i) {
+					this.getSavingsAccounts().get(i).debit(amount);
+				} else {
+					throw new NotExistingAccountException("This account does not exist!");
+				}
 			} catch (DebitGreaterThanBalanceException e) {
 				System.out.println("The debit should not be greater than the balance!");
 			}
+			
 		}
+		
 	}
 	
-	
-
 }
