@@ -19,12 +19,16 @@ public class SavingsAccount {
 	// The list of debits
 	private List<Double> debits;
 	
+	// The interest computed as a bonus for the account.
+	private double interest;
+	
 	/**
 	 * A constructor for SavingsAccount instances.
 	 */
 	public SavingsAccount () {
 		this.credits = new ArrayList<>();
 		this.debits = new ArrayList<>();
+		this.interest = 0;
 	}
 	
 	/**
@@ -41,6 +45,14 @@ public class SavingsAccount {
 	 */
 	public List<Double> getDebits() {
 		return this.debits;
+	}
+	
+	/**
+	 * Returns the interest of a savings account.
+	 * @return the interest of a savings account.
+	 */
+	public double getInterest() {
+		return this.interest;
 	}
 
 	/**
@@ -80,14 +92,14 @@ public class SavingsAccount {
 		}
 	}
 
-	public Double getInterest() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	/**
+	 * Computes the interest of a savings account at the end of a year according to its balance and a rate of interest.
+	 * @param rate the rate of interest.
+	 */
 	public void computeInterest(double rate) {
-		// TODO Auto-generated method stub
-		
+		if(rate >= 0 && rate < 100) {
+			this.interest = (this.getBalance()*rate)/100;
+		}
 	}
 	
 }
