@@ -1,6 +1,7 @@
-package bank;
+package bank.account;
 
 import java.util.*;
+import bank.util.DebitGreaterThanBalanceException;
 
 /**
  * 
