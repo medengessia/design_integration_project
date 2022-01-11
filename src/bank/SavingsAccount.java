@@ -101,5 +101,10 @@ public class SavingsAccount {
 			this.interest = (this.getBalance()*rate)/100;
 		}
 	}
+
+	public void echeance(double rate) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

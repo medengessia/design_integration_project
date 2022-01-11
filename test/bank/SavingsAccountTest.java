@@ -73,5 +73,16 @@ public class SavingsAccountTest {
 		sAccount.computeInterest(rate);
 		assertEquals((amount*rate)/100, sAccount.getInterest());
 	}
+	
+	@Test
+	public void interestAreProperlyCredited () {
+		SavingsAccount sAccount = new SavingsAccount();
+		double rate = 1.75;
+		double amount = 10000;
+		sAccount.credit(amount);
+		assertEquals(amount, sAccount.getBalance());
+		sAccount.echeance(rate);
+		assertEquals(amount + (amount*rate)/100, sAccount.getBalance());
+	}
 
 }
