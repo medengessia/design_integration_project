@@ -14,9 +14,9 @@ A Linux operating system providing a java compiler, available in M5 building, fo
 
 #### Installation
 
-Import the folder from GitLab with : https://gitlab.univ-lille.fr/matthieu.medengessia.etu/tp_tdd_medeng.git
+Import the folder from GitLab with : 
 
-git clone 
+git clone https://gitlab.univ-lille.fr/matthieu.medengessia.etu/tp_tdd_medeng.git
 
 #### Create the javadoc
 Open a Terminal
