@@ -57,4 +57,13 @@ public class BankTest {
 		assertEquals(amount2, sAccount.getDebits().get(0));
 	}
 	
+	@Test
+	public void notExistingAccountRejected () {
+		Bank bank = new Bank();
+		BankAccount account = new BankAccount();
+		double amount = 100;
+		assertThrows(NotExistingAccountException.class, () -> {bank.creditAccount(account, 0, amount);});
+		assertThrows(NotExistingAccountException.class, () -> {bank.debitAccount(account, 0, amount);});
+	}
+	
 }
