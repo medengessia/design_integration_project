@@ -38,7 +38,7 @@ public class BankTest {
 		BankAccount account = new BankAccount();
 		bank.addAccount(account);
 		assertEquals(0, account.getCredits().size());
-		bank.creditAccount(0, amount);
+		bank.creditAccount(account, 0, amount);
 		assertEquals(1, account.getCredits().size());
 		assertEquals(amount, account.getCredits().get(0));
 	}

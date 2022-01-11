@@ -57,9 +57,23 @@ public class Bank {
 		}
 	}
 
-	public void creditAccount(int i, double amount) {
-		// TODO Auto-generated method stub
-		
+	/**
+	 * Credits an account in the lists according to its index.
+	 * @param account the account whose type is to be identified.
+	 * @param i the index of the account.
+	 * @param amount the amount to credit the account with.
+	 */
+	public void creditAccount(Object account, int i, double amount) {
+		if (account instanceof BankAccount) {
+			try {
+				this.getBankAccounts().get(i).addCredit(amount);
+			} catch (ZeroCreditOrDebitException e) {
+				System.out.println("A credit of zero is prohibited!");
+			}
+		}
+		if (account instanceof SavingsAccount) {
+			this.getSavingsAccounts().get(i).credit(amount);
+		}
 	}
 	
 	
