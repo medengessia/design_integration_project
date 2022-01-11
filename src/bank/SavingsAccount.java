@@ -66,7 +66,9 @@ public class SavingsAccount {
 	}
 
 	public void debit(double amount) {
-		this.debits.add(amount);
+		if (this.getBalance() - amount >= 0) {
+			this.debits.add(amount);
+		}
 	}
 	
 }
