@@ -13,14 +13,17 @@ import bank.DebitGreaterThanBalanceException;
 
 public class SavingsAccount {
 	
-	// The list of credits 
+	// The list of credits.
 	private List<Double> credits;
 	
-	// The list of debits
+	// The list of debits.
 	private List<Double> debits;
 	
 	// The interest computed as a bonus for the account.
 	private double interest;
+	
+	// The balance of the account.
+	private double finalBalance;
 	
 	/**
 	 * A constructor for SavingsAccount instances.
@@ -29,6 +32,7 @@ public class SavingsAccount {
 		this.credits = new ArrayList<>();
 		this.debits = new ArrayList<>();
 		this.interest = 0;
+		this.finalBalance = 0;
 	}
 	
 	/**
@@ -102,9 +106,21 @@ public class SavingsAccount {
 		}
 	}
 
+	/**
+	 * Computes the balance of a savings account at the end of a year according to its former balance and a rate of interest.
+	 * @param rate the rate of interest.
+	 */
 	public void echeance(double rate) {
-		// TODO Auto-generated method stub
-		
+		this.computeInterest(rate);
+		this.finalBalance += this.interest;
+	}
+
+	/**
+	 * Returns the balance of a savings account at the end of a year.
+	 * @return the balance of a savings account at the end of a year.
+	 */
+	public double getFinalBalance() {
+		return this.finalBalance + this.getBalance();
 	}
 	
 }

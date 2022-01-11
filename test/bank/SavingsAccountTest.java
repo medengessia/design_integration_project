@@ -82,7 +82,7 @@ public class SavingsAccountTest {
 		sAccount.credit(amount);
 		assertEquals(amount, sAccount.getBalance());
 		sAccount.echeance(rate);
-		assertEquals(amount + (amount*rate)/100, sAccount.getBalance());
+		assertEquals(amount + (amount*rate)/100, sAccount.getFinalBalance());
 	}
 
 }
