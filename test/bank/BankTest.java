@@ -20,4 +20,15 @@ public class BankTest {
 		assertEquals(0, bank.getSavingsAccounts().size());
 	}
 	
+	@Test
+	public void accountsWellCreated () {
+		Bank bank = new Bank();
+		BankAccount account = new BankAccount();
+		SavingsAccount sAccount = new SavingsAccount();
+		bank.addAccount(account);
+		bank.addAccount(sAccount);
+		assertEquals(1, bank.getBankAccounts().size());
+		assertEquals(1, bank.getSavingsAccounts().size());
+	}
+	
 }

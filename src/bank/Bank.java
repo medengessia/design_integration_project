@@ -41,6 +41,11 @@ public class Bank {
 	public List<SavingsAccount> getSavingsAccounts() {
 		return this.savingsAccounts;
 	}
+
+	public void addAccount(Object account) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 
