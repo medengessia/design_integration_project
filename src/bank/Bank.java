@@ -76,9 +76,27 @@ public class Bank {
 		}
 	}
 
-	public void debitAccount(Object account, int i, double amount2) {
-		// TODO Auto-generated method stub
-		
+	/**
+	 * Debits an account in the lists according to its index.
+	 * @param account the account whose type is to be identified.
+	 * @param i the index of the account.
+	 * @param amount the amount to credit the account with.
+	 */
+	public void debitAccount(Object account, int i, double amount) {
+		if (account instanceof BankAccount) {
+			try {
+				this.getBankAccounts().get(i).addDebit(amount);
+			} catch (ZeroCreditOrDebitException e) {
+				System.out.println("A debit of zero is prohibited!");
+			}
+		}
+		if (account instanceof SavingsAccount) {
+			try {
+				this.getSavingsAccounts().get(i).debit(amount);
+			} catch (DebitGreaterThanBalanceException e) {
+				System.out.println("The debit should not be greater than the balance!");
+			}
+		}
 	}
 	
 	
