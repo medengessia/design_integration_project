@@ -69,7 +69,7 @@ Only the last question (4.5) could not have been handled.
 
 The most regrettable thing, even though the whole code managed to be handled with more or less efficiency, is the fact that the subject's guidance lacked of clarity, so that the creation of the first accounts was quite confusing, between tables and finally lists, for instance. 
 
-Furthermore, the need to answer properly each very question led us to a specific way of treating each of them, when far better ways to handle the matter of accounts seemed more interesting. I mean, with more time and more reflection, an abstraction then just one list of accounts for Bank instances could have sounded much better.
+Furthermore, the need to answer properly each very question led us to a specific way of treating each of them, when far better ways to handle the matter of accounts seemed more interesting. I mean, with more time and more reflection, an abstraction then just one list of accounts for Bank instances could have sounded much better. That is what I tried to do in the last commits.
 
 
 ### Depository tree
@@ -85,6 +85,7 @@ Furthermore, the need to answer properly each very question led us to a specific
 |   ├── bank
 |   |   ├── Bank.java
 |   |   ├── account
+|   |   |   ├── Account.java
 |   |   |   ├── BankAccount.java
 |   |   |   ├── SavingsAccount.java
 |   |   ├── util
