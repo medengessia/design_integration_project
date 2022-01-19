@@ -1,6 +1,5 @@
 package bank.account;
 
-import java.util.*;
 import bank.util.ZeroCreditOrDebitException;
 
 /**
@@ -11,19 +10,13 @@ import bank.util.ZeroCreditOrDebitException;
  *
  */
 
-public class BankAccount {
+public class BankAccount extends Account {
 	
 	// The credit available on an account.
 	private double credit;
 	
 	// The debit available on an account.
 	private double debit;
-	
-	// The list of credits.
-	private List<Double> credits;
-	
-	// The list of debits.
-	private List<Double> debits;
 	
 	// The maximal allowed amount to credit or debit an account.
 	public static final double MAX_AMOUNT = 100000;
@@ -32,10 +25,9 @@ public class BankAccount {
 	 * A constructor for BankAccount instances.
 	 */
 	public BankAccount () {
+		super();
 		this.credit = 0;
 		this.debit = 0;
-		this.credits = new ArrayList<>();
-		this.debits = new ArrayList<>();
 	}
 
 	/**
@@ -60,22 +52,6 @@ public class BankAccount {
 	 */
 	public double getBalance() {
 		return this.credit + this.debit;
-	}
-	
-	/**
-	 * Returns the list of credits.
-	 * @return the list of credits.
-	 */
-	public List<Double> getCredits() {
-		return this.credits;
-	}
-
-	/**
-	 * Returns the list of debits.
-	 * @return the list of debits.
-	 */
-	public List<Double> getDebits() {
-		return this.debits;
 	}
 	
 	/**
@@ -112,11 +88,8 @@ public class BankAccount {
 	 * @throws ZeroCreditOrDebitException when the amount is zero.
 	 */
 	public void addCredit(double amount) throws ZeroCreditOrDebitException {
-		if (amount == 0) {
-			throw new ZeroCreditOrDebitException("A credit of zero is prohibited!");
-		}
-		if (amount > 0 && amount <= MAX_AMOUNT) {
-			this.credits.add(amount);
+		if (amount <= MAX_AMOUNT) {
+			super.addCredit(amount);
 		}
 	}
 
@@ -126,11 +99,8 @@ public class BankAccount {
 	 * @throws ZeroCreditOrDebitException when the amount is zero.
 	 */
 	public void addDebit(double amount) throws ZeroCreditOrDebitException {
-		if (amount == 0) {
-			throw new ZeroCreditOrDebitException("A debit of zero is prohibited!");
-		}
-		if (amount > 0 && amount <= MAX_AMOUNT) {
-			this.debits.add(amount);
+		if (amount <= MAX_AMOUNT) {
+			super.addDebit(amount);
 		}
 	}
 

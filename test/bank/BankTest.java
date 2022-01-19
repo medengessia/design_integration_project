@@ -18,30 +18,32 @@ public class BankTest {
 	@Test
 	public void bankCorrectlyCreated () {
 		Bank bank = new Bank();
-		assertEquals(0, bank.getBankAccounts().size());
-		assertEquals(0, bank.getSavingsAccounts().size());
+		assertEquals(0, bank.getAccounts().size());
 	}
 	
 	@Test
 	public void accountsWellCreated () {
 		Bank bank = new Bank();
-		BankAccount account = new BankAccount();
-		SavingsAccount sAccount = new SavingsAccount();
+		Account account = new BankAccount();
+		Account sAccount = new SavingsAccount();
 		bank.addAccount(account);
 		bank.addAccount(sAccount);
-		assertEquals(1, bank.getBankAccounts().size());
-		assertEquals(1, bank.getSavingsAccounts().size());
+		assertEquals(2, bank.getAccounts().size());
 	}
 	
 	@Test
 	public void accountsWellCredited () {
 		Bank bank = new Bank();
 		double amount = 100;
-		BankAccount account = new BankAccount();
+		Account account = new BankAccount();
 		bank.addAccount(account);
 		assertEquals(0, account.getCredits().size());
 		try {
-			bank.creditAccount(account, 0, amount);
+			try {
+				bank.creditAccount(0, amount);
+			} catch (ZeroCreditOrDebitException e) {
+				fail();
+			}
 		} catch (NotExistingAccountException e) {
 			fail();
 		}
@@ -52,14 +54,18 @@ public class BankTest {
 	@Test
 	public void accountsWellDebited () {
 		Bank bank = new Bank();
+		Account sAccount = new SavingsAccount();
 		double amount1 = 100;
 		double amount2 = 50;
-		SavingsAccount sAccount = new SavingsAccount();
 		bank.addAccount(sAccount);
 		assertEquals(0, sAccount.getDebits().size());
 		try {
-			bank.creditAccount(sAccount, 0, amount1);
-			bank.debitAccount(sAccount, 0, amount2);
+			try {
+				bank.creditAccount(0, amount1);
+				bank.debitAccount(0, amount2);
+			} catch (ZeroCreditOrDebitException e) {
+				fail();
+			}
 		} catch (NotExistingAccountException e) {
 			fail();
 		}
@@ -70,10 +76,9 @@ public class BankTest {
 	@Test
 	public void notExistingAccountRejected () {
 		Bank bank = new Bank();
-		BankAccount account = new BankAccount();
 		double amount = 100;
-		assertThrows(NotExistingAccountException.class, () -> {bank.creditAccount(account, 0, amount);});
-		assertThrows(NotExistingAccountException.class, () -> {bank.debitAccount(account, 0, amount);});
+		assertThrows(NotExistingAccountException.class, () -> {bank.creditAccount(0, amount);});
+		assertThrows(NotExistingAccountException.class, () -> {bank.debitAccount(0, amount);});
 	}
 	
 }

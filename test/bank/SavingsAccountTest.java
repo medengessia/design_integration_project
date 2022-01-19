@@ -27,7 +27,11 @@ public class SavingsAccountTest {
 		SavingsAccount sAccount = new SavingsAccount();
 		int before = sAccount.getCredits().size();
 		double amount = 100;
-		sAccount.credit(amount);
+		try {
+			sAccount.addCredit(amount);
+		} catch (ZeroCreditOrDebitException e) {
+			fail();
+		}
 		assertEquals(before + 1, sAccount.getCredits().size());
 		assertEquals(amount, sAccount.getCredits().get(before));
 	}
@@ -38,8 +42,12 @@ public class SavingsAccountTest {
 		assertEquals(0, sAccount.getBalance());
 		double amount1 = 100;
 		double amount2 = 200;
-		sAccount.credit(amount1);
-		sAccount.credit(amount2);
+		try {
+			sAccount.addCredit(amount1);
+			sAccount.addCredit(amount2);
+		} catch (ZeroCreditOrDebitException e) {
+			fail();
+		}
 		assertEquals(amount1 + amount2, sAccount.getBalance());
 	}
 	
@@ -62,7 +70,7 @@ public class SavingsAccountTest {
 		SavingsAccount sAccount = new SavingsAccount();
 		assertEquals(0, sAccount.getBalance());
 		double amount = 100;
-		assertThrows(DebitGreaterThanBalanceException.class, () -> {sAccount.debit(amount);});
+		assertThrows(DebitGreaterThanBalanceException.class, () -> {sAccount.addDebitForSavings(amount);});
 	}
 	
 	@Test
@@ -71,7 +79,11 @@ public class SavingsAccountTest {
 		assertEquals(0, sAccount.getInterest());
 		double rate = 1.75;
 		double amount = 10000;
-		sAccount.credit(amount);
+		try {
+			sAccount.addCredit(amount);
+		} catch (ZeroCreditOrDebitException e) {
+			fail();
+		}
 		sAccount.computeInterest(rate);
 		assertEquals((amount*rate)/100, sAccount.getInterest());
 	}
@@ -81,7 +93,11 @@ public class SavingsAccountTest {
 		SavingsAccount sAccount = new SavingsAccount();
 		double rate = 1.75;
 		double amount = 10000;
-		sAccount.credit(amount);
+		try {
+			sAccount.addCredit(amount);
+		} catch (ZeroCreditOrDebitException e) {
+			fail();
+		}
 		assertEquals(amount, sAccount.getBalance());
 		sAccount.echeance(rate);
 		assertEquals(amount + (amount*rate)/100, sAccount.getFinalBalance());

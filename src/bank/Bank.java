@@ -14,122 +14,60 @@ import bank.util.*;
 
 public class Bank {
 	
-	// The list of bank accounts in the bank.
-	private List<BankAccount> bankAccounts;
-	
-	// The list of savings accounts in the bank.
-	private List<SavingsAccount> savingsAccounts;
+	// The list of accounts in the bank.
+	private List<Account> accounts;
 	
 	/**
 	 * A constructor for Bank instances.
 	 */
 	public Bank () {
-		this.bankAccounts = new ArrayList<>();
-		this.savingsAccounts = new ArrayList<>();
+		this.accounts = new ArrayList<>();
 	}
 
 	/**
-	 * Returns the list of bank accounts in the bank.
-	 * @return the list of bank accounts in the bank.
+	 * Returns the list of accounts in the bank.
+	 * @return the list of accounts in the bank.
 	 */
-	public List<BankAccount> getBankAccounts() {
-		return this.bankAccounts;
+	public List<Account> getAccounts() {
+		return this.accounts;
 	}
 
 	/**
-	 * Returns the list of savings accounts in the bank.
-	 * @return the list of savings accounts in the bank.
+	 * Creates a new account in the list of accounts. 
+	 * @param account an account to be added.
 	 */
-	public List<SavingsAccount> getSavingsAccounts() {
-		return this.savingsAccounts;
+	public void addAccount(Account account) {
+		this.accounts.add(account);
 	}
 
 	/**
-	 * Creates a new account either in the list of bank accounts or in the list of savings accounts. 
-	 * @param account an object which must be an instance of BankAccount or SavingsAccount.
-	 */
-	public void addAccount(Object account) {
-		if (account instanceof BankAccount) {
-			BankAccount a1 = (BankAccount) account;
-			this.bankAccounts.add(a1);
-		}
-		if (account instanceof SavingsAccount) {
-			SavingsAccount a2 = (SavingsAccount) account;
-			this.savingsAccounts.add(a2);
-		}
-	}
-
-	/**
-	 * Credits an account in the lists according to its index.
-	 * @param account the account whose type is to be identified.
+	 * Credits an account in the list according to its index.
 	 * @param i the index of the account.
 	 * @param amount the amount to credit the account with.
-	 * @throws NotExistingAccountException when the index does not exist in the lists.
+	 * @throws NotExistingAccountException when the index does not exist in the list.
+	 * @throws ZeroCreditOrDebitException when the amount is zero.
 	 */
-	public void creditAccount(Object account, int i, double amount) throws NotExistingAccountException {
-		
-		if (account instanceof BankAccount) {
-			
-			try {
-				if (this.getBankAccounts().size() > i) {
-					this.getBankAccounts().get(i).addCredit(amount);
-				} else {
-					throw new NotExistingAccountException("This account does not exist!");
-				}		
-			} catch (ZeroCreditOrDebitException e) {
-				System.out.println("A credit of zero is prohibited!");
-			}
-			
-		}
-		
-		
-		if (account instanceof SavingsAccount) {
-			if (this.getSavingsAccounts().size() > i) {
-				this.getSavingsAccounts().get(i).credit(amount);
-			} else {
-				throw new NotExistingAccountException("This account does not exist!");
-			}		
+	public void creditAccount(int i, double amount) throws NotExistingAccountException, ZeroCreditOrDebitException {
+		if (this.getAccounts().size() > i) {
+			this.getAccounts().get(i).addCredit(amount);
+		} else {
+			throw new NotExistingAccountException("This account does not exist!");
 		}
 	}
 
 	/**
-	 * Debits an account in the lists according to its index.
-	 * @param account the account whose type is to be identified.
+	 * Debits an account in the list according to its index.
 	 * @param i the index of the account.
 	 * @param amount the amount to credit the account with.
-	 * @throws NotExistingAccountException when the index does not exist in the lists.
+	 * @throws NotExistingAccountException when the index does not exist in the list.
+	 * @throws ZeroCreditOrDebitException when the amount is zero.
 	 */
-	public void debitAccount(Object account, int i, double amount) throws NotExistingAccountException {
-		
-		if (account instanceof BankAccount) {
-			
-			try {
-				if (this.getBankAccounts().size() > i) {
-					this.getBankAccounts().get(i).addDebit(amount);
-				} else {
-					throw new NotExistingAccountException("This account does not exist!");
-				}	
-			} catch (ZeroCreditOrDebitException e) {
-				System.out.println("A debit of zero is prohibited!");
-			}
-			
+	public void debitAccount(int i, double amount) throws NotExistingAccountException, ZeroCreditOrDebitException {
+		if (this.getAccounts().size() > i) {
+			this.getAccounts().get(i).addDebit(amount);
+		} else {
+			throw new NotExistingAccountException("This account does not exist!");
 		}
-		
-		
-		if (account instanceof SavingsAccount) {
-			
-			try {
-				if (this.getSavingsAccounts().size() > i) {
-					this.getSavingsAccounts().get(i).debit(amount);
-				} else {
-					throw new NotExistingAccountException("This account does not exist!");
-				}
-			} catch (DebitGreaterThanBalanceException e) {
-				System.out.println("The debit should not be greater than the balance!");
-			}
-			
-		}
-		
 	}
 	
 }
