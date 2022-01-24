@@ -1,4 +1,4 @@
-# tp_tdd_medeng
+# tp_tdd_medeng + integration tests
 
 This repository belongs to **Matthieu Medeng Essia**.
 
@@ -6,7 +6,9 @@ Informatique-Mathématiques bachelor's degree.
 
 ### Subject
 
-This assignment aims to get ourselves accustomed with TDD process. By means of making us work on the implementation of the behaviour of banks and accounts, the purpose was to help us understand how much time we buy when we start by testing first.
+On one hand, this assignment aims to get ourselves accustomed with TDD process. By means of making us work on the implementation of the behaviour of banks and accounts, the purpose was to help us understand how much time we buy when we start by testing first.
+
+On the other hand, another part of the project consisted in doing integration tests by using pipelines on GitLab, and working with Maven to have a more precise idea of how do the tests of the project run.
 
 #### Prerequisites
 
@@ -63,6 +65,8 @@ Please notice that testJt5.jar is a -jar executable containing Junit5 API that y
 ### Current work
 
 Only the last question (4.5) could not have been handled.
+
+Regarding the integration tests part, all work has been done.
 
 
 ### Distinguished elements
