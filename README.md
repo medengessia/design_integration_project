@@ -12,13 +12,13 @@ On the other hand, another part of the project consisted in doing integration te
 
 #### Prerequisites
 
-A Linux operating system providing a java compiler, available in M5 building, for instance. 
+A Linux operating system providing a java compiler. 
 
 #### Installation
 
-Import the folder from GitLab with : 
+Import the folder from GitHub with : 
 
-git clone https://gitlab.univ-lille.fr/matthieu.medengessia.etu/tp_tdd_medeng.git
+git clone https://github.com/medengessia/design_integration_project
 
 #### Create the javadoc
 Open a Terminal
@@ -63,8 +63,6 @@ Please notice that testJt5.jar is a -jar executable containing Junit5 API that y
 ```
 
 ### Current work
-
-Only the last question (4.5) could not have been handled.
 
 Regarding the integration tests part, all work has been done.
 
